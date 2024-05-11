@@ -5,13 +5,13 @@ library(dplyr)
 library(ggplot2)
 library(forcats)
 
-injuries <- vroom::vroom("neiss/injuries.tsv.gz")
+injuries <- vroom::vroom("injuries.tsv.gz")
 injuries
 
-products <- vroom::vroom("neiss/products.tsv")
+products <- vroom::vroom("products.tsv")
 products
 
-population <- vroom::vroom("neiss/population.tsv")
+population <- vroom::vroom("population.tsv")
 population
 
 # select injuries caused by toilets (code 649)
@@ -96,7 +96,7 @@ server <- function(input, output, session) {
       mutate(rate = n / population * 1e4)
   })
   
-  #<< plot - choose between rate or count, rate is default in this
+  #<< plot - choose between rate or count, rate is default in this case
   output$age_sex <- renderPlot({
     if (input$y == "count") {
       summary() %>%
